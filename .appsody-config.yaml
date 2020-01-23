@@ -1,0 +1,2 @@
+project-name: kabanero-jee-tutorial
+stack: kabanero/java-microprofile:0.2
