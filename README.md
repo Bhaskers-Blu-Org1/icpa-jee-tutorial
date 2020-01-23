@@ -1,75 +1,3 @@
----
-# Related publishing issue: https://github.ibm.com/IBMCode/IBMCodeContent/issues/3523
-
-authors:
-  - name: "Denilson Nastacio"
-    email: "dnastaci@us.ibm.com"
-
-# cities:        # Required=false For a full list of options see https://github.ibm.com/IBMCode/Definitions/blob/master/cities.yml. Use the slug value found at the referenced link to include it in this content.
-
-# collection:        # Required=false 
-
-completed_date: '2019-12-03'
-last_updated: '2019-12-03'
-
-components:        # Required=false For a full list of options see https://github.ibm.com/IBMCode/Definitions/blob/master/components.yml
-  - "cloud-pak-for-applications"
-  - "cloud-native"
-  - "open-liberty"
-
-draft: true
-
-meta_description: "Create a highly-scalable database client with the Appsody Eclipse MicroProfile collection."
-abstract: "Create a highly-scalable database client with the Appsody Eclipse MicroProfile collection."
-excerpt: "Create a highly-scalable database client with the Appsody Eclipse MicroProfile collection."
-
-meta_keywords:        # Required=true This is a comma separated list of keywords used for SEO purposes.
-  - "appsody"
-  - "icpa"
-  - "kabanero"
-  - "kubernetes"
-  - "microservices"
-  - "jdbc"
-  - "jee"
-
-primary_tag: appsody
-
-pta: "cloud, container, and infrastructure"
-
-pwg:        # Required=true Note: can be one or many. For a full list of options see https://github.ibm.com/IBMCode/Definitions/blob/master/portfolio-working-group.yml. Use the slug value found at the referenced link to include it in this content.
-  - containers
-
-related_content:        # Required=false Note: zero or more related content
-  - type: "blogs"
-    slug: "app-modernization-ibm-cloud-pak-applications/"
-
-related_links:
-  - title IBM Cloud Pak for Applications
-    url: "https://developer.ibm.com/components/cloud-pak-for-applications/"
-    description: "A hybrid, multicloud foundation for modernizing existing applications and developing new cloud-native apps"
-  - title: Appsody Website
-    url: "https://appsody.dev/"
-    # description:
-  - title: kabanero.io Website
-    url: "https://kabanero.io"
-    # description:
-  - title: Persistence for Java Microservices in Kubernetes via JPA
-    url: "http://heidloff.net/article/persistence-java-microservices-kubernetes-jpa/"
-    # description:
-
-title: "Create a highly-scalable database client with the Appsody Eclipse MicroProfile collection"
-meta_title: "Create a highly-scalable database client with the Appsody Eclipse MicroProfile collection"
-subtitle: "Using JPA and JDBC connection pools inside the Appsody java-microprofile collection"
-
-tags:
-  - "appsody"
-  - "cloud"
-  - "containers"
-  - "microservices"
-
-type: tutorial
----
-
 In this tutorial, you will create a microservice based on a common design pattern for processing high volumes of database requests with minimal lag in response times while also minimizing resource utilization in the underlying database engine.
 
 This tutorial is meant for developers who are familiar with [Appsody](https://developer.ibm.com/blogs/introduction-to-appsody/) and experienced with the usage of [Java&trade; Database Connectivity](https://docs.oracle.com/javase/8/docs/technotes/guides/jdbc/) (JDBC) and the [Java Persistence API](https://docs.oracle.com/javaee/6/tutorial/doc/bnbpz.html) (JPA) programming model. 
@@ -78,7 +6,6 @@ Appsody is a core part of the development experience in the [IBM Cloud Pak for A
 
 For an even more relevant example, you will create this microservice using a JPA persistence context backed by a database connection pool, allowing the microservice endpoints to serve requests from the database with minimum latency and avoiding unnecessary resource strain on the remote database service.
 
-<!--EM: I think all of this is fine for the introduction but we seem to be me missing exactly what the reader is going to learn. Is this in the right direction? "In this tutorial, you will create a microservice using a JPA persistence context baced by a database connection pool.-->
 
 ## Prerequisites
 
@@ -97,7 +24,7 @@ Complete the following steps to build and test applications on your local workst
     
     ![Copy the API key](images/ibm-cloud-create-key.png)
     
-    Once you click on the "Create" button, you will see the dialog with the resulting key. Copy the API key value from your own dialog and paste it somewhere safe. It will be used later to login via command-line interface and referenced as ${IBMCLOUD_API_KEY} throughout the instructions in this tutorial. <!--EM: I'm a little confused? are they supposed to copy the key from this image? or will they have their own unique key that they get from above?-->
+    Once you click on the "Create" button, you will see the dialog with the resulting key. Copy the API key value from your own dialog and paste it somewhere safe. It will be used later to login via command-line interface and referenced as ${IBMCLOUD_API_KEY} throughout the instructions in this tutorial. 
 
 * A running Kubernetes cluster
 
@@ -124,7 +51,6 @@ At the end of the tutorial, you will have progressed from creating and container
 
 ![Tutorial progress](images/application-jee-jpa-db2.png)
 
-<!--EM: For accessibility we need to write out what we're seeing in the image. Do they align closely with the steps? If so, we could introduce the image as: "Those steps look like this graphically" . . . or "At the end of the tutorial, you will have progressed from creating and containerizing an application to creating a DB2 service adn deploying all of that to a Kubernetes cluster".-->
 
 ## Step 1. Create the starter application
 
@@ -175,7 +101,6 @@ jee-sample/
                         └── starter/
                             └── HealthEndpointTest.java
 ```
-<!--EM: Is it necessary to have this in an image or do you think we could get the point across if we just write out this structure in a code block listing?-->
 
 Note that the application template may evolve over time, so some of the files and directories may not match exactly the ones you see in the image above.
 
@@ -190,7 +115,6 @@ The application in this tutorial accesses the database through the JPA programmi
 You will create the new JPA persistence unit in the location specified for applications packaged as a WAR file.
 
 1. Create the directory `src/main/resources/META-INF` and then create the JPA `persistence.xml` file in that directory with the following contents:
-<!--EM: Is this something that a general reader will know how to do? Is the following code listing just showing you how to cdreate the direction and file?-->
  
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -329,7 +253,6 @@ Note that, later in this tutorial, you will create the database table `Departmen
 At this point, you have the Java classes that can enable the application to retrieve rows from the `Department` table using JPA. So, the final class to complete the application contains REST endpoints to allow other applications to work with the persistence layer.
 
 Create a new directory `src/main/java/dev/appsody/jpa/resources` package named `dev.appsody.jpa.resources`, containing a file named `DepartmentResource.java` with the contents below:
-<!--EM: So, is the following a code listing that is the output of creating the directory? or are there parts of this that the dev fills in? I guess I'm just confused how someone will know how to do the steps above and exactly what this code listing is showing/.-->
 
 ```java
 package dev.appsody.jpa.resources;
@@ -561,7 +484,7 @@ At this point, you have all Java classes required to return JSON objects represe
 
 The DB2 JDBC driver files are available from [Maven central](https://mvnrepository.com/artifact/com.ibm.db2/jcc), so you will modify the application's `pom.xml` build file to include those files in the final application.
 
-The download of dependencies is achieved with a `dependency` element inside the `dependencies` element of the `pom.xml` file located in the root directory of the application, so you need to place the following XML snippet inside the `dependencies` element: <!--EM: Is this something the reader needs to add to the root directory of their app?-->
+The download of dependencies is achieved with a `dependency` element inside the `dependencies` element of the `pom.xml` file located in the root directory of the application, so you need to place the following XML snippet inside the `dependencies` element: 
 
 ```xml
         <dependency>
@@ -601,8 +524,6 @@ Add the JPA feature with the following XML snippet pasted into the `featureManag
 ### Bind your JDBC data source to the JDNI
 
 You need to bind your JDBC data source to the `jdbc/sample` JNDI name referenced earlier in the JPA persistence unit. You can then change the bulid `pom.xml file to reference the DB2 JDBC drivers added to the application.
-
-<!--EM: Do we need to change this to be something active the reader does? So, for instance, "You need to bind your JDBC data source to the `jdbc/sample` JNDI name referenced earlier in the JPA persistence unit. You can then change the bulid `pom.xml file to reference the DB2 JDBC drivers added to the application.-->
 
 Add the following XML snippet to the `server` element in the `server.xml` runtime configuration file:
 
@@ -645,7 +566,7 @@ Notice that the file pattern in the `includes` field matches the files contained
 You may have noticed that, so far, nothing in `server.xml` points to the database created earlier in the tutorial. These properties are added as a new `properties.db2.jcc` block inside the `dataSource` element in the `server.xml` configuration file.
 
 The tutorial will show the full contents of the `server.xml` file at the end of this step, but for now, now how the `properties.db2.jcc` XML snippet should be placed inside the server configuration file:
-<!--EM: Is this something the reader adds? Do they need to copy/paste this code listing?-->
+
 
 ```xml
     <dataSource id="DefaultDataSource"
@@ -745,7 +666,7 @@ In the previous sections, we outlined the definition of a `library` element in t
 
 Until Appsody Stack [issue #539](https://github.com/appsody/stacks/issues/539) is addressed, we need to resort to the  [Maven Resources Plugin](https://maven.apache.org/plugins/maven-resources-plugin/) to copy the JDBC driver files to a location where they will be found by Appsody when running the application locally and when building the final container for deployment.
 
-Insert the XML snippet below inside the `plugins` element in the build `pom.xml` file: <!--EM: Okay, do we expect the reader to copy/paste this?-->
+Insert the XML snippet below inside the `plugins` element in the build `pom.xml` file: 
 
 ```xml
             <plugin>
@@ -804,7 +725,7 @@ The standard Java Microprofile collection in Kabanero.io currently does not trus
 
 In the meantime, you need to instruct Open Liberty to use a trust store for outbound connections. That trust store must contain either the certificate for the signing authority for the service certificate or the service certificate itself.
 
-The trust store is then referenced in the server configuration file as an [SSL Repertoire](https://openliberty.io/docs/ref/config/ssl.html) element for outbound connections.<!--EM: What does this last phrase mean? "then referenced . . . ". does that mean the service certificate that's referenced in the OL SSL Repertoire?-->
+The trust store is then referenced in the server configuration file as an [SSL Repertoire](https://openliberty.io/docs/ref/config/ssl.html) element for outbound connections.
 
 ### Reference an existing CA database
 
@@ -812,7 +733,7 @@ Db2 On Cloud service instances, like the one used in this tutorial, are signed b
 
 The Open Liberty configuration [docs](https://openliberty.io/docs/ref/config/#sslDefault.html) explain in detail how to associate that CA database as the trust store for outbound secure communications, which involves changes to the server configuration.
 
-Make those modifications to the `server.xml` configuration file adding the `keystore`, `ssl`, and `sslDefault` elements in the XML snippet below to the `server.xml` configuration file: <!--EM: Again, is this something the reader adds? copies/pastes?-->
+Make those modifications to the `server.xml` configuration file adding the `keystore`, `ssl`, and `sslDefault` elements in the XML snippet below to the `server.xml` configuration file: 
 
 
 ```xml
