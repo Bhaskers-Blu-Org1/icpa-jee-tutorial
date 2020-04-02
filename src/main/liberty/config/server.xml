@@ -31,11 +31,11 @@
                 transactional="true">
 
         <properties.db2.jcc
-            user="${db_user}"
-            password="${db_password}"
             serverName="${db_server}"
             portNumber="${db_port}"
             databaseName="${db_database}"
+            user="${db_user}"
+            password="${db_password}"
             sslConnection="true"
             currentLockTimeout="10"
             cursorSensitivity="0"
