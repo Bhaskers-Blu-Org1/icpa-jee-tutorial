@@ -1,31 +1,28 @@
 <server description="Liberty server">
-	<featureManager>
-		<feature>microProfile-3.0</feature>
-		<feature>jpa-2.2</feature>
-	</featureManager>
+    <featureManager>
+        <feature>microProfile-3.2</feature>
+        <feature>jpa-2.2</feature>
+    </featureManager>
 
-	<quickStartSecurity userName="admin"
-		userPassword="adminpwd" />
+    <keyStore id="defaultTrustStore"
+        password="changeit"
+        readOnly="false"
+        type="JKS"
+        location="${JAVA_HOME}/jre/lib/security/cacerts">
+    </keyStore>
 
-	<keyStore id="defaultTrustStore" 
-	    password="changeit"
-		readOnly="false" 
-		type="JKS" 
-		location="${JAVA_HOME}/lib/security/cacerts">
-	</keyStore>
+    <ssl id="defaultSSLSettings"
+         keyStoreRef="defaultKeyStore"
+         trustStoreRef="defaultTrustStore"></ssl>
 
-	<ssl id="defaultSSLSettings" 
-	     keyStoreRef="defaultKeyStore"
-		 trustStoreRef="defaultTrustStore"></ssl>
+    <sslDefault
+        sslRef="defaultSSLSettings"
+        outboundSSLRef="defaultSSLSettings"></sslDefault>
 
-	<sslDefault 
-	    sslRef="defaultSSLSettings" 
-	    outboundSSLRef="defaultSSLSettings"></sslDefault>
-
-	<keyStore id="defaultKeyStore" location="key.jks" type="jks"
-		password="mpKeystore" />
-	<httpEndpoint host="*" httpPort="${default.http.port}"
-		httpsPort="${default.https.port}" id="defaultHttpEndpoint" />
+    <httpEndpoint host="*" httpPort="${default.http.port}" 
+        httpsPort="${default.https.port}" id="defaultHttpEndpoint"/>
+    
+    <webApplication location="starter-app.war" contextRoot="/"/>
 
     <dataSource id="DefaultDataSource"
                 jndiName="jdbc/sample"
@@ -33,45 +30,42 @@
                 type="javax.sql.ConnectionPoolDataSource"
                 transactional="true">
 
-	    <properties.db2.jcc 
-		    serverName="${db_server}" 
-		    portNumber="${db_port}" 
-		    databaseName="${db_database}" 
-		    user="${db_user}" 
-		    password="${db_password}"
-		    sslConnection="true"
-		    currentLockTimeout="10"
-		    cursorSensitivity="0"
-		    deferPrepares="true"
-		    driverType="4" 
-		    loginTimeout="0" 
-		    resultSetHoldability="1"
-		    retrieveMessagesFromServerOnGetMessage="true"
-		    traceLevel="-1"/>
-		    
-      <connectionManager 
-          connectionTimeout="180"
-	      maxPoolSize="10" 
-	      minPoolSize="1" 
-	      reapTime="180" 
-	      maxIdleTime="1800"
-	      agedTimeout="7200" 
-	      purgePolicy="EntirePool" />
+        <properties.db2.jcc
+            user="${db_user}"
+            password="${db_password}"
+            serverName="${db_server}"
+            portNumber="${db_port}"
+            databaseName="${db_database}"
+            sslConnection="true"
+            currentLockTimeout="10"
+            cursorSensitivity="0"
+            deferPrepares="true"
+            driverType="4"
+            loginTimeout="0"
+            resultSetHoldability="1"
+            retrieveMessagesFromServerOnGetMessage="true"
+            traceLevel="-1"/>
+
+        <connectionManager
+            connectionTimeout="180"
+            maxPoolSize="10"
+            minPoolSize="1"
+            reapTime="180"
+            maxIdleTime="1800"
+            agedTimeout="7200"
+            purgePolicy="EntirePool" />
     </dataSource>
 
-    <jdbcDriver 
+    <jdbcDriver
         id="db2-driver"
         javax.sql.ConnectionPoolDataSource="com.ibm.db2.jcc.DB2ConnectionPoolDataSource"
         libraryRef="db2-library"/>
 
     <library id="db2-library">
-        <fileset 
+        <fileset
             id="db2Fileset"
             dir="${server.config.dir}/resources"
             includes="jcc*.jar"/>
     </library>
-
-	<webApplication location="starter-app.war"
-		contextRoot="/" />
 
 </server>

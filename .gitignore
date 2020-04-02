@@ -1,6 +1,7 @@
 /target/*
 !.keep
-
+.db2.appsody.run.env
+.db2.temp.env
 
 ### STS ###
 .apt_generated
