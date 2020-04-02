@@ -6,9 +6,9 @@ metadata:
     authoritative-source-url: registry.access.redhat.com
     build-date: 2019-10-29T16:44:53.794580
     commit.image.appsody.dev/author: Denilson Nastacio <dnastaci@us.ibm.com>
-    commit.image.appsody.dev/committer: GitHub <noreply@github.com>
-    commit.image.appsody.dev/date: Wed Apr 1 18:48:42 2020 -0400
-    commit.image.appsody.dev/message: 'Merge pull request #1 from IBM/imgbot'
+    commit.image.appsody.dev/committer: Denilson Nastacio <dnastaci@us.ibm.com>
+    commit.image.appsody.dev/date: Wed Apr 1 21:06:45 2020 -0400
+    commit.image.appsody.dev/message: Formatting
     commit.stack.appsody.dev/author: Steve Groeger <groeges@uk.ibm.com>
     commit.stack.appsody.dev/committer: GitHub <noreply@github.com>
     commit.stack.appsody.dev/contextDir: /incubator/java-openliberty
@@ -17,10 +17,10 @@ metadata:
     description: This image is the Kabanero development container for the java-openliberty
       stack
     distribution-scope: public
-    image.opencontainers.org/created: "2020-04-01T19:55:38-04:00"
+    image.opencontainers.org/created: "2020-04-02T08:08:01-04:00"
     image.opencontainers.org/documentation: https://github.com/IBM/icpa-jee-tutorial
-    image.opencontainers.org/revision: 23dbc1de8ad4ae56aec383697fcd8d985ca700a6-modified
-    image.opencontainers.org/source: https://github.com/IBM/icpa-jee-tutorial/tree/master
+    image.opencontainers.org/revision: d29982f06de608980d7a7c31e5ba6f8553138444-modified
+    image.opencontainers.org/source: https://github.com/IBM/icpa-jee-tutorial/tree/java-openliberty
     image.opencontainers.org/url: https://github.com/IBM/icpa-jee-tutorial
     k8s.io/description: The Universal Base Image is designed and engineered to be
       the base layer for all of your containerized applications, middleware and utilities.
@@ -61,7 +61,7 @@ metadata:
     stack.appsody.dev/version: 0.2.3
   name: jee-sample
 spec:
-  applicationImage: dev.local/jee-sample
+  applicationImage: us.icr.io/ns_dnastaci_kabanero/jee-sample:0.0.3
   createKnativeService: false
   env:
   - name: db_server

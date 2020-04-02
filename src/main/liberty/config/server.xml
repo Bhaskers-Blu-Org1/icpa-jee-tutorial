@@ -31,7 +31,7 @@
                 transactional="true">
 
         <properties.db2.jcc
-            serverName="${db_server}"
+            serverName="${env.db_server}"
             portNumber="${db_port}"
             databaseName="${db_database}"
             user="${db_user}"
