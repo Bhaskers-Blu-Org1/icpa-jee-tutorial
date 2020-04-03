@@ -7,16 +7,21 @@ metadata:
     build-date: 2019-10-29T16:44:53.794580
     commit.image.appsody.dev/author: Denilson Nastacio <dnastaci@us.ibm.com>
     commit.image.appsody.dev/committer: Denilson Nastacio <dnastaci@us.ibm.com>
-    commit.image.appsody.dev/date: Thu Nov 21 20:05:55 2019 -0500
-    commit.image.appsody.dev/message: Edits for flow on application creation.
-    description: This image contains the Kabanero development stack for the java-microprofile
-      collection
+    commit.image.appsody.dev/date: Wed Apr 1 21:06:45 2020 -0400
+    commit.image.appsody.dev/message: Formatting
+    commit.stack.appsody.dev/author: Steve Groeger <groeges@uk.ibm.com>
+    commit.stack.appsody.dev/committer: GitHub <noreply@github.com>
+    commit.stack.appsody.dev/contextDir: /incubator/java-openliberty
+    commit.stack.appsody.dev/date: Tue Mar 10 21:35:36 2020 +0000
+    commit.stack.appsody.dev/message: 'Merge pull request #313 from groeges/release-0.6'
+    description: This image is the Kabanero development container for the java-openliberty
+      stack
     distribution-scope: public
-    image.opencontainers.org/created: "2019-11-22T16:34:44-05:00"
-    image.opencontainers.org/documentation: https://github.ibm.com/dnastaci/kabanero-jee-tutorial
-    image.opencontainers.org/revision: b76cfaf616e687c696bb12d30957cf05660e1725-modified
-    image.opencontainers.org/source: https://github.ibm.com/dnastaci/kabanero-jee-tutorial/tree/master
-    image.opencontainers.org/url: https://github.ibm.com/dnastaci/kabanero-jee-tutorial
+    image.opencontainers.org/created: "2020-04-02T08:08:01-04:00"
+    image.opencontainers.org/documentation: https://github.com/IBM/icpa-jee-tutorial
+    image.opencontainers.org/revision: d29982f06de608980d7a7c31e5ba6f8553138444-modified
+    image.opencontainers.org/source: https://github.com/IBM/icpa-jee-tutorial/tree/java-openliberty
+    image.opencontainers.org/url: https://github.com/IBM/icpa-jee-tutorial
     k8s.io/description: The Universal Base Image is designed and engineered to be
       the base layer for all of your containerized applications, middleware and utilities.
       This base image is freely redistributable, but Red Hat only supports Red Hat
@@ -24,30 +29,39 @@ metadata:
       by Red Hat and updated regularly.
     k8s.io/display-name: Red Hat Universal Base Image 8
     maintainer: Red Hat, Inc.
-    name: kabanero/java-microprofile
+    name: kabanero/java-openliberty
     openshift.io/expose-services: ""
     openshift.io/tags: base rhel8
     redhat.com/build-host: cpt-1002.osbs.prod.upshift.rdu2.redhat.com
     redhat.com/component: ubi8-container
     redhat.com/license_terms: https://www.redhat.com/en/about/red-hat-end-user-license-agreements#UBI
     release: "277"
-    stack.appsody.dev/configured: kabanero/java-microprofile:0.2
-    stack.appsody.dev/created: 2019-11-19T17:38:46+0000
-    stack.appsody.dev/revision: 82c11bd3fda141fc56df6653a58a3567dfe87d46
-    stack.appsody.dev/tag: kabanero/java-microprofile:0.2.19
-    summary: Image for Kabanero java-microprofile development
+    stack.appsody.dev/authors: Mike Andrasak <andrasak@us.ibm.com>, Andy Mauer <ajmauer@us.ibm.com>,
+      Scott Kurz <skurz@us.ibm.com>, Adam Wisniewski <awisniew@us.ibm.com>
+    stack.appsody.dev/configured: docker.io/kabanero/java-openliberty:0.2
+    stack.appsody.dev/created: "2020-03-10T21:42:07Z"
+    stack.appsody.dev/description: Open Liberty & OpenJ9 using Maven
+    stack.appsody.dev/documentation: https://github.com/kabanero-io/collections/tree/master/incubator/java-openliberty/README.md
+    stack.appsody.dev/licenses: Apache-2.0
+    stack.appsody.dev/revision: 5f7634c970b880bef90eeea4288153249e172d61
+    stack.appsody.dev/source: https://github.com/kabanero-io/collections/tree/master/incubator/java-openliberty/image
+    stack.appsody.dev/tag: docker.io/kabanero/java-openliberty:0.2.3
+    stack.appsody.dev/title: Open Liberty
+    stack.appsody.dev/url: https://github.com/kabanero-io/collections/tree/master/incubator/java-openliberty
+    summary: Image for Kabanero java-openliberty development
     url: https://access.redhat.com/containers/#/registry.access.redhat.com/ubi8/images/8.1-277
     vcs-ref: c42933bcdbf9f1c232e981a5e40de257c3534c8e
     vcs-type: git
     vendor: Kabanero
-    version: 0.2.10
+    version: 0.2.3
   creationTimestamp: null
   labels:
-    image.opencontainers.org/title: kabanero-jee-tutorial
-    stack.appsody.dev/version: 0.2.19
-  name: kabanero-jee-tutorial
+    image.opencontainers.org/title: jee-sample
+    stack.appsody.dev/id: java-openliberty
+    stack.appsody.dev/version: 0.2.3
+  name: jee-sample
 spec:
-  applicationImage: us.icr.io/ns-kabanero/jee-sample:2
+  applicationImage: us.icr.io/ns_dnastaci_kabanero/jee-sample:0.0.3
   createKnativeService: false
   env:
   - name: db_server
@@ -97,6 +111,5 @@ spec:
     port: 9080
     type: NodePort
   serviceAccountName: default
-  stack: java-microprofile
+  stack: java-openliberty
   version: 1.0.0
-status: {}

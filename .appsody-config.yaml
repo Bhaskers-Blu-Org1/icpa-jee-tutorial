@@ -1,2 +1,3 @@
-project-name: kabanero-jee-tutorial
-stack: kabanero/java-microprofile:0.2
+id: "20200402075950.61128400"
+project-name: jee-sample
+stack: docker.io/kabanero/java-openliberty:0.2
